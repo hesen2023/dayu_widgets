@@ -153,3 +153,15 @@ class MPage(QtWidgets.QWidget, MFieldMixin):
         self.sig_page_changed.emit(
             self.field("page_size_selected"), self.field("current_page")
         )
+
+    @property
+    def pre_button(self):
+        return self._pre_button
+
+    @property
+    def next_button(self):
+        return self._next_button
+
+    @property
+    def change_page_size_button(self):
+        return self._change_page_size_button
