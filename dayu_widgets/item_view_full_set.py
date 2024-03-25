@@ -35,7 +35,7 @@ class MItemViewFullSet(QtWidgets.QWidget):
     sig_selection_changed = QtCore.Signal(QtCore.QItemSelection, QtCore.QItemSelection)
     sig_context_menu = QtCore.Signal(object)
 
-    def __init__(self, table_view=True, big_view=False, parent=None):
+    def __init__(self, table_view=True, big_view=False, parent=None, show_bottom=False):
         super(MItemViewFullSet, self).__init__(parent)
         self.sort_filter_model = MSortFilterModel()
         self.source_model = MTableModel()
@@ -108,7 +108,8 @@ class MItemViewFullSet(QtWidgets.QWidget):
         self.main_lay.setContentsMargins(0, 0, 0, 0)
         self.main_lay.addWidget(self.tool_bar)
         self.main_lay.addWidget(self.stack_widget)
-        self.main_lay.addWidget(self.page_set)
+        if show_bottom:
+            self.main_lay.addWidget(self.page_set)
         self.setLayout(self.main_lay)
 
     def enable_context_menu(self):
