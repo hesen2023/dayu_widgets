@@ -24,6 +24,7 @@ from dayu_widgets.item_view import MTableView
 from dayu_widgets.line_edit import MLineEdit
 from dayu_widgets.page import MPage
 from dayu_widgets.tool_button import MToolButton
+from dayu_widgets import utils
 
 
 class MItemViewFullSet(QtWidgets.QWidget):
@@ -35,7 +36,8 @@ class MItemViewFullSet(QtWidgets.QWidget):
     sig_selection_changed = QtCore.Signal(QtCore.QItemSelection, QtCore.QItemSelection)
     sig_context_menu = QtCore.Signal(object)
 
-    def __init__(self, table_view=True, big_view=False, parent=None, show_bottom=False):
+    def __init__(self, table_view=True, big_view=False, view_size=None, parent=None, 
+                 show_bottom=False, show_row_count=False):
         super(MItemViewFullSet, self).__init__(parent)
         self.sort_filter_model = MSortFilterModel()
         self.source_model = MTableModel()
@@ -46,7 +48,7 @@ class MItemViewFullSet(QtWidgets.QWidget):
         self.view_button_grp = MToolButtonGroup(exclusive=True)
         data_group = []
         if table_view:
-            self.table_view = MTableView(show_row_count=True)
+            self.table_view = MTableView(show_row_count=show_row_count, size=view_size)
             self.table_view.doubleClicked.connect(self.sig_double_clicked)
             self.table_view.pressed.connect(self.slot_left_clicked)
             self.table_view.setModel(self.sort_filter_model)
