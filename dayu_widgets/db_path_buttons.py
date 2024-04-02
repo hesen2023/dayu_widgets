@@ -13,7 +13,10 @@ from __future__ import print_function
 
 # Import built-in modules
 from functools import partial
-from itertools import izip_longest
+try:
+    from itertools import izip_longest
+except ImportError:
+    from itertools import zip_longest
 
 # Import third-party modules
 from qt import *

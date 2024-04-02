@@ -58,7 +58,7 @@ class MFieldMixin(object):
         return widget
 
     def fields(self):
-        return self.props_dict.keys() + self.computed_dict.keys()
+        return list(self.props_dict.keys()) + list(self.computed_dict.keys())
 
     def field(self, name):
         if name in self.props_dict:
