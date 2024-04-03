@@ -466,6 +466,9 @@ def add_settings(organization, app_name, event_name="closeEvent"):
             app_name,
         )
         for attr, widget, property in self._bind_data:
+            import shiboken2
+            if not shiboken2.isValid(widget):
+                continue
             if property == "geometry":
                 settings.setValue(attr, widget.saveGeometry())
             elif property == "state":
